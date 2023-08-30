@@ -1,31 +1,39 @@
-#include <stdio.h>
-#include <pthread.h>
+#include "philosopher.h"
 
-#define NUM_THREADS 5
+void *thread(void *arg)
+{
+	t_philosopher	philo;
 
-void *thread(void *arg) {
-	int thread_num = *(int *)arg;
-	printf("Hello from thread %d\n", thread_num);
-	return NULL;
+	philo = *(t_philosopher *)arg;
+	printf("[%d]Philosopher Action: %d\n", philo.id, philo.action);
+	return (NULL);
 }
 
-int main(void) {
-	int i;
-	pthread_t threads[NUM_THREADS];
-	int thread_args[NUM_THREADS];
+int main(void)
+{
+	t_philosopher	philosopher[THREADS];
+	int				i;
 
 	i = 0;
-	while (i < NUM_THREADS) {
-		thread_args[i] = i;
-		pthread_create(&threads[i], NULL, thread, &thread_args[i]);
+	while(i < THREADS)
+	{
+		philosopher[i].id = i;
+		philosopher[i].action = THINK;
+		philosopher[i].left_fork = i;
+		philosopher[i].right_fork = (i + 1);
+		int result = pthread_create(&philosopher[i].thread, NULL, thread, &philosopher[i]);
+		if (result != 0)
+		{
+			printf("Error creating thread\n");
+			return (1);
+		}
 		i++;
 	}
-
 	i = 0;
-	while (i < NUM_THREADS) {
-		pthread_join(threads[i], NULL);
+	while (i < THREADS)
+	{
+		pthread_join(philosopher[i].thread, NULL);
 		i++;
 	}
-
-	return 0;
+	return (0);
 }

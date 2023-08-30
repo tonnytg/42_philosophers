@@ -1,2 +1,8 @@
+CC = gcc
+CFLAGS = -g -Wall -Wextra -Werror
+
 all:
-	gcc main.c -pthread
+	$(CC) $(CFLAGS) main.c -lpthread -o philo
+
+clean:
+	rm philo

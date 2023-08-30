@@ -1,6 +1,9 @@
 # 42_philosophers
 
-Esse é um problema clássico conhecido como o "Problema dos Filósofos Jantando" ou "Dining Philosophers Problem". O objetivo desse problema é encontrar uma solução que permita que os filósofos compartilhem os garfos e evitem bloqueios (deadlocks) enquanto satisfazem suas necessidades de comer, pensar e dormir. Aqui está a lógica básica do algoritmo para resolver esse problema:
+Esse é um problema clássico conhecido como o "Problema dos Filósofos Jantando" ou "Dining Philosophers Problem".
+
+O objetivo desse problema é encontrar uma solução que permita que os filósofos compartilhem os garfos e evitem bloqueios (deadlocks) enquanto satisfazem suas necessidades de comer, pensar e dormir.<br />
+Aqui está a lógica básica do algoritmo para resolver esse problema:
 
 Cada filósofo é modelado como uma thread (ou processo) separada, e os garfos são compartilhados recursos entre essas threads.
 
