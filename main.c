@@ -1,16 +1,18 @@
 #include "philosopher.h"
 
-void	*routine(void *arg)
+void *routine(void *arg)
 {
-	t_resources	*resources;
+	t_resources *resources = (t_resources *)arg;
+	int id = resources->id;
 
-	resources = (t_resources *)arg;
-	printf("timestamp_in_ms %d is sleeping\n", resources->id);
+	printf("timestamp_in_ms %d is sleeping\n", id);
 	usleep(1000 * 1000);
-	printf("timestamp_in_ms %d is eating\n", resources->id);
+	printf("timestamp_in_ms %d is eating\n", id);
 	usleep(1000 * 1000);
-	printf("timestamp_in_ms %d is thinking\n", resources->id);
+	printf("timestamp_in_ms %d is thinking\n", id);
 	usleep(1000 * 1000);
+	free(arg);
+
 	return (NULL);
 }
 
@@ -43,14 +45,15 @@ void	wait_threads(t_conf *config, t_threads *threads)
 	}
 }
 
-int	create_threads(t_conf *conf, t_threads *threads, t_resources *resources)
+int create_threads(t_conf *conf, t_threads *threads)
 {
-	int	i;
-	int	result;
+	int i;
+	int result;
 
 	i = 0;
-	while(i < conf->philo_count)
+	while (i < conf->philo_count)
 	{
+		t_resources *resources = malloc(sizeof(t_resources));
 		resources->id = i;
 		result = pthread_create(&threads[i].thread, NULL, routine, resources);
 		if (result != 0)
@@ -63,6 +66,13 @@ int	create_threads(t_conf *conf, t_threads *threads, t_resources *resources)
 	return (0);
 }
 
+void clean_all(t_conf *conf, t_threads *threads, t_resources *resources)
+{
+	free(conf);
+	free(threads);
+	free(resources);
+}
+
 int main(int argc, char **argv)
 {
 	t_conf		*conf;
@@ -73,7 +83,8 @@ int main(int argc, char **argv)
 	set_config(conf, argc, argv);
 	threads = malloc(sizeof(t_threads) * conf->philo_count);
 	resources = malloc(sizeof(t_resources));
-	create_threads(conf, threads, resources);
+	create_threads(conf, threads);
 	wait_threads(conf, threads);
+	clean_all(conf, threads, resources);
 	return (0);
 }

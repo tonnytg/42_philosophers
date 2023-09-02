@@ -27,6 +27,11 @@ typedef struct s_resources
 	int	forks;
 }	t_resources;
 
+typedef struct s_info
+{
+	int	id;
+}	t_info;
+
 typedef struct s_threads
 {
 	pthread_t	thread;
