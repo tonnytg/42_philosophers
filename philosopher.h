@@ -12,6 +12,11 @@
 #define EAT 1
 #define THINK 2
 
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_YELLOW  "\x1b[33m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
+
 typedef struct s_conf
 {
 	int		philo_count;
@@ -23,8 +28,10 @@ typedef struct s_conf
 
 typedef struct s_resources
 {
-	int	id;
-	int	forks;
+	int				id;
+	int				forks;
+	t_conf			*config;
+	pthread_mutex_t	mutex;
 }	t_resources;
 
 typedef struct s_info
