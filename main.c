@@ -13,7 +13,7 @@ void *routine(void *arg)
 		printf("timestamp_in_ms %d is sleeping\n", id);
 		usleep(1000 * 1000);
 		if (pthread_mutex_lock(&resources->mutex) != 0) {
-			printf("Erro ao bloquear mutex\n");
+			printf(ANSI_COLOR_RED "Erro ao bloquear mutex\n" ANSI_COLOR_RESET);
 			exit(1);
 		}
 
@@ -21,7 +21,7 @@ void *routine(void *arg)
 		usleep(1000 * 1000);
 
 		if (pthread_mutex_unlock(&resources->mutex) != 0) {
-			printf("Erro ao desbloquear mutex\n");
+			printf(ANSI_COLOR_RED "Erro ao desbloquear mutex\n" ANSI_COLOR_RESET);
 			exit(1);
 		}
 		printf("timestamp_in_ms %d is thinking\n", id);
