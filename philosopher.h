@@ -46,11 +46,18 @@ typedef struct s_threads
 	int			action;
 }	t_threads;
 
+typedef struct s_simulation
+{
+	t_conf		*config;
+	t_threads	*threads;
+	t_resources	*resources;
+}	t_simulation;
+
 int		ft_atoi(const char *nptr);
-void	wait_threads(t_conf *config, t_threads *threads);
-int		create_threads(t_conf *conf, t_threads *threads);
-void	clean_all(t_conf *conf, t_threads *threads, t_resources *resources);
-void	set_config(t_conf *config, int argc, char **argv);
+void	wait_threads(t_simulation *simulation);
+int		create_threads(t_simulation *simulation);
+void	clean_all(t_simulation *simulation);
+void	set_config(t_simulation *simulation, int argc, char **argv);
 void	*routine(void *arg);
 
 #endif

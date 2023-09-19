@@ -1,28 +1,28 @@
 #include "philosopher.h"
 
-void	wait_threads(t_conf *config, t_threads *threads)
+void	wait_threads(t_simulation *simulation)
 {
 	int	i;
 
 	i = 0;
-	while (i < config->philo_count)
+	while (i < simulation->config->philo_count)
 	{
-		pthread_join(threads[i].thread, NULL);
+		pthread_join(simulation->threads[i].thread, NULL);
 		i++;
 	}
 }
 
-int create_threads(t_conf *conf, t_threads *threads)
+int create_threads(t_simulation *simulation)
 {
 	int i;
 	int result;
 
 	i = 0;
-	while (i < conf->philo_count)
+	while (i < simulation->config->philo_count)
 	{
 		t_resources *resources = malloc(sizeof(t_resources));
 		resources->id = i;
-		result = pthread_create(&threads[i].thread, NULL, &routine, resources);
+		result = pthread_create(&simulation->threads[i].thread, NULL, &routine, resources);
 		if (result != 0)
 		{
 			printf("Error creating thread\n");
