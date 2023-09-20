@@ -1,4 +1,4 @@
-#include "philosopher.h"
+#include "../headers/philosopher.h"
 
 int	ft_atoi(const char *nptr)
 {
