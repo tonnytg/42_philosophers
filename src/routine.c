@@ -32,18 +32,10 @@ void run_sleep(t_config *config)
 
 void *routine(void *arg)
 {
-	t_philosopher_config	*philosopher_config;
 	t_config				*config;
 	int						i;
-	int						id;
 
 	config = (t_config *)arg;
-	philosopher_config = calloc(1, sizeof(t_philosopher_config));
-
-	config->thread = *philosopher_config;
-	id = config->philosopher->id;
-	printf("thread ptr: %p\n", &id);
-	printf("thread id: %d\n", id);
 
 	i = 0;
 	while (i < 10)
