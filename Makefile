@@ -4,7 +4,7 @@ FILES  = main.c 	\
 		libs/libs.c		\
 		src/threads.c	\
 		src/routine.c	\
-		src/set_config.c	\
+		src/configuration.c	\
 		src/simulation.c
 
 all:

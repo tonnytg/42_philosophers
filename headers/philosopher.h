@@ -23,8 +23,8 @@ typedef struct s_config
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
-	int count_loop;
-	int	philo_count;
+	int loop;
+	int	count;
 } t_config;
 
 typedef struct s_fork
@@ -38,10 +38,22 @@ typedef struct s_table
 	t_fork	*forks;
 } t_table;
 
+typedef struct s_info
+{
+		int	is_live;
+		int	last_eat;
+		int	last_sleep;
+		int	last_think;
+		int	last_action;
+		int	count_eat;
+} t_info;
+
 typedef struct s_philosopher
 {
+	int			id;
 	int 		action;
-	t_config	config;
+	t_config	*config;
+	t_info		*info;
 }	t_philosopher;
 
 typedef struct s_simulation
@@ -55,9 +67,10 @@ int		wait_threads(t_simulation *simulation);
 int		create_threads(t_simulation *simulation);
 void	clean_all(t_simulation *simulation);
 void	set_config(t_simulation *simulation, int argc, char **argv);
+void	set_philosophers(t_simulation *simulation);
 void	init_simulation_struct(t_simulation *simulation);
 void	start_simulation(t_simulation *simulation);
 void	end_simulation(t_simulation *simulation);
-void	*routine(t_threads *thread);
+void	*routine(t_philosopher *philo);
 
 #endif

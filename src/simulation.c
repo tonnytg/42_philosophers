@@ -2,7 +2,8 @@
 
 void	clean_all(t_simulation *simulation)
 {
-	pthread_mutex_destroy(&simulation->resources->mutex);
+	printf("clean - %p\n", simulation);
+//	pthread_mutex_destroy(&simulation);
 //	free(simulation->config);
 //	free(simulation->threads);
 //	free(simulation->resources);
@@ -10,7 +11,7 @@ void	clean_all(t_simulation *simulation)
 
 void	init_simulation_struct(t_simulation *simulation)
 {
-	printf("init\n");
+	simulation->config = calloc(1, sizeof(t_config));
 }
 
 void	start_simulation(t_simulation *simulation)
