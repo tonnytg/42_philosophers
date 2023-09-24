@@ -21,7 +21,9 @@ void run_eat(t_philosopher *philosopher)
 				current_time = get_time();
 				live_time = current_time - philosopher->created_at;
 				printf("%d %d is eating\n", live_time, philosopher->id);
+
 				usleep(philosopher->config->time_to_eat * 1000);
+				philosopher->info->last_time_ate = current_time;
 				pthread_mutex_unlock(&t->forks[left_fork_id]->mutex);
 			}
 			pthread_mutex_unlock(&t->forks[right_fork_id]->mutex);
@@ -38,9 +40,11 @@ void run_eat(t_philosopher *philosopher)
 			if (!pthread_mutex_lock(&t->forks[right_fork_id]->mutex))
 			{
 				current_time = get_time();
+
 				live_time = current_time - philosopher->created_at;
 				printf("%d %d is eating\n", live_time, philosopher->id);
 				usleep(philosopher->config->time_to_eat * 1000);
+				philosopher->info->last_time_ate = current_time;
 				pthread_mutex_unlock(&t->forks[right_fork_id]->mutex);
 			}
 			pthread_mutex_unlock(&t->forks[left_fork_id]->mutex);
