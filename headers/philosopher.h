@@ -51,6 +51,7 @@ typedef struct s_info
 typedef struct s_philosopher
 {
 	int			id;
+	int			created_at;
 	int 		action;
 	t_config	*config;
 	t_info		*info;
@@ -62,15 +63,33 @@ typedef struct s_simulation
 	t_config	*config;
 } t_simulation;
 
+//libs
 int		ft_atoi(const char *nptr);
-int		wait_threads(t_simulation *simulation);
-int		create_threads(t_simulation *simulation);
-void	clean_all(t_simulation *simulation);
+int		get_time();
+
+// config
 void	set_config(t_simulation *simulation, int argc, char **argv);
 void	set_philosophers(t_simulation *simulation);
+
+// simulation
 void	init_simulation_struct(t_simulation *simulation);
 void	start_simulation(t_simulation *simulation);
 void	end_simulation(t_simulation *simulation);
+void	clean_all(t_simulation *simulation);
+
+// threads
+int		create_threads(t_simulation *simulation);
+int		wait_threads(t_simulation *simulation);
+
+// routine
 void	*routine(t_philosopher *philo);
+
+// health
+void	check_health(t_philosopher *philosopher);
+
+// actions
+void	run_sleep(t_philosopher *philosopher);
+void	run_eat(t_philosopher *philosopher);
+void	run_think(t_philosopher *philosopher);
 
 #endif

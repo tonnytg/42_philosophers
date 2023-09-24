@@ -7,11 +7,9 @@ void *routine(t_philosopher *philosopher)
 	i = 0;
 	while (i < philosopher->config->loop)
 	{
-		printf("Philosopher ID: %d\n", philosopher->id);
-		printf("Last Eat: %d\n", philosopher->info->last_eat);
-		printf("Last Sleep: %d\n", philosopher->info->last_sleep);
-		printf("Last Think: %d\n", philosopher->info->last_think);
-		usleep(1000 * 1000);
+		run_sleep(philosopher);
+		run_eat(philosopher);
+		run_think(philosopher);
 		i++;
 	}
 	return (NULL);

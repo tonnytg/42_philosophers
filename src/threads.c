@@ -27,6 +27,7 @@ void set_philosopher(
 		int i)
 {
 	philosopher->id = i;
+	philosopher->created_at = get_time();
 	philosopher->config = simulation->config;
 	philosopher->info = calloc(1, sizeof(t_info));
 }
