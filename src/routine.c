@@ -1,11 +1,11 @@
 #include "../headers/philosopher.h"
 
-void *routine(t_philosopher *philosopher)
+void	*routine(t_philosopher *philosopher)
 {
-	int						i;
+	int	i;
 
 	i = 0;
-	while (i < philosopher->config->loop)
+	while (i < philosopher->config->loop || philosopher->config->loop == -1)
 	{
 		run_sleep(philosopher);
 		run_eat(philosopher);

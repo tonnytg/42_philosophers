@@ -18,15 +18,6 @@
 # define ANSI_COLOR_YELLOW  "\x1b[33m"
 # define ANSI_COLOR_RESET   "\x1b[0m"
 
-typedef struct s_config
-{
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int loop;
-	int	count;
-} t_config;
-
 typedef struct s_fork
 {
 	int				is_used;
@@ -35,17 +26,28 @@ typedef struct s_fork
 
 typedef struct s_table
 {
-	t_fork	*forks;
+	t_fork	**forks;
 } t_table;
+
+typedef struct s_config
+{
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		loop;
+	int		count;
+	t_table	*table;
+} t_config;
 
 typedef struct s_info
 {
-		int	is_live;
-		int	last_eat;
-		int	last_sleep;
-		int	last_think;
-		int	last_action;
-		int	count_eat;
+	int	is_live;
+	int	last_eat;
+	int	last_sleep;
+	int	last_think;
+	int	last_action;
+	int	count_eat;
+	int last_time_ate;
 } t_info;
 
 typedef struct s_philosopher
