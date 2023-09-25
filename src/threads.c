@@ -16,11 +16,6 @@ int	wait_threads(t_simulation *simulation)
 	return (0);
 }
 
-int get_time_now()
-{
-	return 1629900000;
-}
-
 void set_philosopher(
 		t_simulation *simulation,
 		t_philosopher *philosopher,
@@ -30,6 +25,7 @@ void set_philosopher(
 	philosopher->created_at = get_time();
 	philosopher->config = simulation->config;
 	philosopher->info = calloc(1, sizeof(t_info));
+	philosopher->info->last_time_ate = get_time();
 }
 
 int	create_threads(t_simulation *simulation)
