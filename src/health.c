@@ -1,6 +1,6 @@
 # include "../headers/philosopher.h"
 
-void check_health(t_philosopher *philosopher)
+int check_health(t_philosopher *philosopher)
 {
 	int current_time;
 	int time_since_last_eat;
@@ -12,6 +12,7 @@ void check_health(t_philosopher *philosopher)
 		printf("%d %d died\n",
 			   current_time - philosopher->created_at,
 			   philosopher->id);
-		exit(1);
+		return (1);
 	}
+	return (0);
 }

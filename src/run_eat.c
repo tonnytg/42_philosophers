@@ -5,10 +5,12 @@ void run_eat(t_philosopher *philosopher)
 	int current_time;
 	int live_time;
 	t_table *t;
+	int err;
 
 	t = philosopher->config->table;
-	check_health(philosopher);
-
+	err = check_health(philosopher);
+	if (err)
+		return ;
 	if (philosopher->config->count > 1)
 	{
 		int right_fork_id = philosopher->id;
