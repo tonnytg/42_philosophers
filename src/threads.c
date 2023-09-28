@@ -9,10 +9,10 @@ int	wait_threads(t_simulation *simulation)
 	int current_time;
 
 	i = 0;
-	thread_return = calloc(simulation->config->count, sizeof(void *));
+	thread_return = simulation->thread_return;
 	while (i < simulation->config->count)
 	{
-		thread_return[i] = calloc(1, sizeof(void *));
+		thread_return[i] = ft_calloc(1, sizeof(void *));
 		err = pthread_join(simulation->threads[i], &thread_return[i]);
 		if (err != 0)
 			return (1);
@@ -38,7 +38,7 @@ void set_philosopher(
 	philosopher->id = i;
 	philosopher->created_at = get_time();
 	philosopher->config = simulation->config;
-	philosopher->info = calloc(1, sizeof(t_info));
+	philosopher->info = ft_calloc(1, sizeof(t_info));
 	philosopher->info->is_live = TRUE;
 	philosopher->info->last_time_ate = get_time();
 }
@@ -49,11 +49,11 @@ int	create_threads(t_simulation *simulation)
 	int						i;
 	t_philosopher **philosophers;
 
-	philosophers = calloc(simulation->config->count, sizeof(t_philosopher));
+	philosophers = simulation->philosophers;
 	i = 0;
 	while (i < simulation->config->count)
 	{
-		philosophers[i] = calloc(1, sizeof(t_philosopher));
+		philosophers[i] = ft_calloc(1, sizeof(t_philosopher));
 		set_philosopher(simulation, philosophers[i], i);
 		err = pthread_create(
 				&simulation->threads[i],

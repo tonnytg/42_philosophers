@@ -39,7 +39,6 @@ void	*ft_memset(void *s, int c, size_t size)
 	return (s);
 }
 
-
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*mem;

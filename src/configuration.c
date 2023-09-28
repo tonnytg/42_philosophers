@@ -26,7 +26,7 @@ void	set_forks(t_simulation *simulation)
 	int i = 0;
 	while (i < c->count)
 	{
-		c->table->forks[i] = calloc(1, sizeof(t_fork));
+		c->table->forks[i] = ft_calloc(1, sizeof(t_fork));
 		pthread_mutex_init(&c->table->forks[i]->mutex, NULL);
 		i++;
 	}
@@ -39,8 +39,10 @@ void	set_philosophers(t_simulation *simulation)
 	if (simulation->err)
 		return ;
 	c = simulation->config;
-	simulation->threads = calloc(c->count, sizeof(pthread_t));
-	simulation->config->table = calloc(1, sizeof(t_table));
-	simulation->config->table->forks = calloc(c->count, sizeof(t_fork *));
+	simulation->threads = ft_calloc(c->count, sizeof(pthread_t));
+	simulation->config->table = ft_calloc(1, sizeof(t_table));
+	simulation->config->table->forks = ft_calloc(c->count, sizeof(t_fork *));
 	set_forks(simulation);
+	simulation->philosophers = ft_calloc(simulation->config->count, sizeof(t_philosopher));
+	simulation->thread_return = ft_calloc(simulation->config->count, sizeof(void *));
 }

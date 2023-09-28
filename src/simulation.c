@@ -20,7 +20,7 @@ void	clean_simulation(t_simulation *simulation)
 
 void	init_simulation_struct(t_simulation *simulation)
 {
-	simulation->config = calloc(1, sizeof(t_config));
+	simulation->config = ft_calloc(1, sizeof(t_config));
 	simulation->err = 0;
 }
 

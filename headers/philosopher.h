@@ -61,9 +61,11 @@ typedef struct s_philosopher
 
 typedef struct s_simulation
 {
-	pthread_t	*threads;
-	t_config	*config;
-	int			err;
+	pthread_t		*threads;
+	t_philosopher	**philosophers;
+	void			**thread_return;
+	t_config		*config;
+	int				err;
 } t_simulation;
 
 //libs
