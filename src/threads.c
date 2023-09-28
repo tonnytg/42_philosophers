@@ -12,7 +12,7 @@ int	wait_threads(t_simulation *simulation)
 	thread_return = simulation->thread_return;
 	while (i < simulation->config->count)
 	{
-		thread_return[i] = ft_calloc(1, sizeof(void *));
+		thread_return[i] = NULL;
 		err = pthread_join(simulation->threads[i], &thread_return[i]);
 		if (err != 0)
 			return (1);

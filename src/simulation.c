@@ -2,7 +2,7 @@
 
 void clean_philosopher(t_philosopher *philosopher)
 {
-	if (philosopher->info)
+	if (philosopher->info != NULL)
 		free(philosopher->info);
 }
 
@@ -10,10 +10,13 @@ void clean_forks(t_simulation *simulation)
 {
 	int i;
 
+	if (simulation->err == 1)
+		return ;
 	i = 0;
 	while (i < simulation->config->count)
 	{
-		pthread_mutex_destroy(&simulation->config->table->forks[i]->mutex);
+		if (simulation->config->table->forks[i])
+			pthread_mutex_destroy(&simulation->config->table->forks[i]->mutex);
 		if (simulation->config->table->forks[i])
 			free(simulation->config->table->forks[i]);		
 		i++;
@@ -26,6 +29,8 @@ void clean_thread_return(t_simulation *simulation)
 {
 	int	i;
 
+	if (simulation->err == 1)
+		return ;
 	i = 0;
 	while (i < simulation->config->count)
 	{
@@ -33,7 +38,8 @@ void clean_thread_return(t_simulation *simulation)
 			free(simulation->thread_return[i]);
 		i++;
 	}
-	free(simulation->thread_return);
+	if (simulation->thread_return)
+		free(simulation->thread_return);
 }
 
 void	clean_simulation(t_simulation *simulation)

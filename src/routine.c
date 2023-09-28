@@ -15,6 +15,5 @@ void	*routine(t_philosopher *philosopher)
 	}
 	if (philosopher->info->is_live == FALSE)
 		return (philosopher);
-	clean_philosopher(philosopher);
 	return (NULL);
 }
