@@ -87,11 +87,11 @@ int		wait_threads(t_simulation *simulation);
 void	*routine(t_philosopher *philo);
 
 // health
-void	check_health(t_philosopher *philosopher);
+int	check_health(t_philosopher *philosopher);
 
 // actions
-void	run_sleep(t_philosopher *philosopher);
-void	run_eat(t_philosopher *philosopher);
-void	run_think(t_philosopher *philosopher);
+int	run_sleep(t_philosopher *philosopher);
+int	run_eat(t_philosopher *philosopher);
+int	run_think(t_philosopher *philosopher);
 
 #endif

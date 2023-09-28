@@ -1,13 +1,14 @@
 # include "../headers/philosopher.h"
 
-void run_eat(t_philosopher *philosopher)
+int run_eat(t_philosopher *philosopher)
 {
 	int current_time;
 	int live_time;
 	t_table *t;
 
 	t = philosopher->config->table;
-	check_health(philosopher);
+	if (check_health(philosopher))
+		return (1);
 	if (philosopher->config->count > 1)
 	{
 		int right_fork_id = philosopher->id;
@@ -47,4 +48,5 @@ void run_eat(t_philosopher *philosopher)
 			}
 		}
 	}
+	return (0);
 }
