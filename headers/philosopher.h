@@ -77,7 +77,8 @@ void	set_philosophers(t_simulation *simulation);
 void	init_simulation_struct(t_simulation *simulation);
 void	start_simulation(t_simulation *simulation);
 void	end_simulation(t_simulation *simulation);
-void	clean_all(t_simulation *simulation);
+void	clean_simulation(t_simulation *simulation);
+void	clean_philosopher(t_philosopher *philosopher);
 
 // threads
 int		create_threads(t_simulation *simulation);

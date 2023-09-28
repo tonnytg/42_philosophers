@@ -9,9 +9,6 @@ int	check_health(t_philosopher *philosopher)
 	time_since_last_eat = current_time - philosopher->info->last_time_ate;
 	if (time_since_last_eat >= philosopher->config->time_to_die)
 	{
-		printf("%d %d died\n",
-			   current_time - philosopher->created_at,
-			   philosopher->id);
 		return (1);
 	}
 	return (0);

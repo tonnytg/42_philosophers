@@ -1,12 +1,21 @@
 #include "../headers/philosopher.h"
 
-void	clean_all(t_simulation *simulation)
+void clean_philosopher(t_philosopher *philosopher)
 {
-	printf("clean - %p\n", simulation);
-//	pthread_mutex_destroy(&simulation);
-//	free(simulation->config);
-//	free(simulation->threads);
-//	free(simulation->resources);
+	if (philosopher->info)
+		free(philosopher->info);
+	if (philosopher)
+		free(philosopher);
+}
+
+void	clean_simulation(t_simulation *simulation)
+{
+	if (simulation->threads)
+		free(simulation->threads);
+	if (simulation->config)
+		free(simulation->config);
+	if (simulation)
+		free(simulation);
 }
 
 void	init_simulation_struct(t_simulation *simulation)
@@ -22,5 +31,5 @@ void	start_simulation(t_simulation *simulation)
 
 void	end_simulation(t_simulation *simulation)
 {
-	clean_all(simulation);
+	clean_simulation(simulation);
 }

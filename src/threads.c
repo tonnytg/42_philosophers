@@ -4,13 +4,27 @@ int	wait_threads(t_simulation *simulation)
 {
 	int	i;
 	int err;
+	void **thread_return;
+	t_philosopher *philosopher;
+	int current_time;
 
 	i = 0;
+	thread_return = calloc(simulation->config->count, sizeof(void *));
 	while (i < simulation->config->count)
 	{
-		err = pthread_join(simulation->threads[i], NULL);
+		thread_return[i] = calloc(1, sizeof(void *));
+		err = pthread_join(simulation->threads[i], &thread_return[i]);
 		if (err != 0)
 			return (1);
+		if (thread_return[i] != NULL)
+		{
+			current_time = get_time();
+			philosopher = (t_philosopher *)thread_return[i];
+			printf("%d %d died\n",
+				   current_time - philosopher->created_at,
+				   philosopher->id);
+			return (1);
+		}
 		i++;
 	}
 	return (0);
