@@ -21,11 +21,12 @@ void	clean_simulation(t_simulation *simulation)
 void	init_simulation_struct(t_simulation *simulation)
 {
 	simulation->config = calloc(1, sizeof(t_config));
+	simulation->err = 0;
 }
 
 void	start_simulation(t_simulation *simulation)
 {
-	if (simulation->error)
+	if (simulation->err)
 		return ;
 	create_threads(simulation);
 	wait_threads(simulation);

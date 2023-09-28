@@ -63,10 +63,12 @@ typedef struct s_simulation
 {
 	pthread_t	*threads;
 	t_config	*config;
-	int			error;
+	int			err;
 } t_simulation;
 
 //libs
+void	*ft_memset(void *s, int c, size_t size);
+void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_atoi(const char *nptr);
 int		get_time();
 

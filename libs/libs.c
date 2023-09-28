@@ -25,3 +25,30 @@ int	ft_atoi(const char *nptr)
 	}
 	return (result * sign);
 }
+
+void	*ft_memset(void *s, int c, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (size > i)
+	{
+		((unsigned char *)s)[i] = (unsigned char) c;
+		i++;
+	}
+	return (s);
+}
+
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*mem;
+
+	if ((nmemb * size) / size != nmemb)
+		return (NULL);
+	mem = malloc((nmemb * size));
+	if (!mem)
+		return (NULL);
+	ft_memset(mem, '\0', (nmemb * size));
+	return (mem);
+}
