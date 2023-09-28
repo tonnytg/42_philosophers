@@ -39,6 +39,7 @@ void set_philosopher(
 	philosopher->created_at = get_time();
 	philosopher->config = simulation->config;
 	philosopher->info = calloc(1, sizeof(t_info));
+	philosopher->info->is_live = TRUE;
 	philosopher->info->last_time_ate = get_time();
 }
 
