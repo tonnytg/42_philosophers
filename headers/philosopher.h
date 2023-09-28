@@ -63,6 +63,7 @@ typedef struct s_simulation
 {
 	pthread_t	*threads;
 	t_config	*config;
+	int			error;
 } t_simulation;
 
 //libs

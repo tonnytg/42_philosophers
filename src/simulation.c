@@ -25,6 +25,8 @@ void	init_simulation_struct(t_simulation *simulation)
 
 void	start_simulation(t_simulation *simulation)
 {
+	if (simulation->error)
+		return ;
 	create_threads(simulation);
 	wait_threads(simulation);
 }

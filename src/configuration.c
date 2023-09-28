@@ -5,7 +5,8 @@ void	set_config(t_simulation *simulation, int argc, char **argv)
 	if (argc < 5 || argc > 6)
 	{
 		printf("Error: Wrong number of arguments\n");
-		exit(1);
+		simulation->error = 1;
+		return ;
 	}
 	simulation->config->count = ft_atoi(argv[1]);		  // 5
 	simulation->config->time_to_die = ft_atoi(argv[2]);   // 800
@@ -35,6 +36,8 @@ void	set_philosophers(t_simulation *simulation)
 {
 	t_config *c;
 
+	if (simulation->error)
+		return ;
 	c = simulation->config;
 	simulation->threads = calloc(c->count, sizeof(pthread_t));
 	simulation->config->table = calloc(1, sizeof(t_table));
