@@ -3,7 +3,7 @@ CFLAGS = -g -Wall -Wextra -Werror
 LDFLAGS = -lpthread
 SOURCES = main.c libs/libs.c src/threads.c src/routine.c src/configuration.c \
           src/simulation.c src/run_sleep.c src/run_eat.c src/run_think.c \
-          src/time.c src/health.c
+          src/time.c src/health.c src/clean.c
 OBJECTS = $(SOURCES:.c=.o)
 TARGET = philo
 
