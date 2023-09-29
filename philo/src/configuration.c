@@ -6,17 +6,53 @@
 /*   By: antthoma <antthoma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 01:36:17 by antthoma          #+#    #+#             */
-/*   Updated: 2023/09/29 01:36:18 by antthoma         ###   ########.fr       */
+/*   Updated: 2023/09/29 20:00:55 by antthoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/philosopher.h"
+
+int	check_value(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '-')
+			return (1);
+		if (str[i] < '0' || str[i] > '9')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	is_argument_invalid(int argc, char **argv)
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (check_value(argv[i]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 void	set_config(t_simulation *simulation, int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)
 	{
 		printf("Error: Wrong number of arguments\n");
+		simulation->err = 1;
+		return ;
+	}
+	if (is_argument_invalid(argc, argv))
+	{
+		printf("Error: Wrong type of argument\n");
 		simulation->err = 1;
 		return ;
 	}
