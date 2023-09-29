@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   threads.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: antthoma <antthoma@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/29 01:35:46 by antthoma          #+#    #+#             */
+/*   Updated: 2023/09/29 01:35:47 by antthoma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/philosopher.h"
 
 int	wait_threads(t_simulation *simulation)
 {
-	int	i;
-	int err;
-	void **thread_return;
-	t_philosopher *philosopher;
-	int current_time;
+	int				i;
+	int				err;
+	int				current_time;
+	void			**thread_return;
+	t_philosopher	*philosopher;
 
 	i = 0;
 	thread_return = simulation->thread_return;
@@ -21,8 +33,7 @@ int	wait_threads(t_simulation *simulation)
 			current_time = get_time();
 			philosopher = (t_philosopher *)thread_return[i];
 			printf("%d %d died\n",
-				   current_time - philosopher->created_at,
-				   philosopher->id);
+				current_time - philosopher->created_at, philosopher->id);
 			return (1);
 		}
 		i++;
@@ -30,7 +41,7 @@ int	wait_threads(t_simulation *simulation)
 	return (0);
 }
 
-void set_philosopher(
+void	set_philosopher(
 		t_simulation *simulation,
 		t_philosopher *philosopher,
 		int i)
@@ -45,15 +56,14 @@ void set_philosopher(
 
 int	create_threads(t_simulation *simulation)
 {
-	int						err;
-	int						i;
-	t_philosopher **philosophers;
+	int				err;
+	int				i;
+	t_philosopher	**philosophers;
 
 	philosophers = simulation->philosophers;
 	i = 0;
 	while (i < simulation->config->count)
 	{
-		philosophers[i] = ft_calloc(1, sizeof(t_philosopher));
 		set_philosopher(simulation, philosophers[i], i);
 		err = pthread_create(
 				&simulation->threads[i],

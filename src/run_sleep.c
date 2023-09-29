@@ -1,11 +1,23 @@
-# include "../headers/philosopher.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_sleep.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: antthoma <antthoma@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/29 01:35:56 by antthoma          #+#    #+#             */
+/*   Updated: 2023/09/29 01:35:57 by antthoma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int run_sleep(t_philosopher *philosopher)
+#include "../headers/philosopher.h"
+
+int	run_sleep(t_philosopher *philosopher)
 {
-	int current_time;
-	int live_time;
+	int	current_time;
+	int	live_time;
 
-	if(check_health(philosopher))
+	if (check_health(philosopher))
 		return (1);
 	current_time = get_time();
 	live_time = current_time - philosopher->created_at;

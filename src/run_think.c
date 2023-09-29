@@ -1,9 +1,21 @@
-# include "../headers/philosopher.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_think.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: antthoma <antthoma@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/29 01:35:53 by antthoma          #+#    #+#             */
+/*   Updated: 2023/09/29 01:35:54 by antthoma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int run_think(t_philosopher *philosopher)
+#include "../headers/philosopher.h"
+
+int	run_think(t_philosopher *philosopher)
 {
-	int current_time;
-	int live_time;
+	int	current_time;
+	int	live_time;
 
 	if (check_health(philosopher))
 		return (1);
