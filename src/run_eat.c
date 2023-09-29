@@ -12,7 +12,7 @@
 
 #include "../headers/philosopher.h"
 
-int	run_eat_left(t_philosopher *philosopher,
+void	run_eat_left(t_philosopher *philosopher,
 		t_table *t, int right_fork_id, int left_fork_id)
 {
 	int	current_time;
@@ -33,7 +33,7 @@ int	run_eat_left(t_philosopher *philosopher,
 	}
 }
 
-int	run_eat_right(t_philosopher *philosopher,
+void	run_eat_right(t_philosopher *philosopher,
 		t_table *t, int right_fork_id, int left_fork_id)
 {
 	int	current_time;
