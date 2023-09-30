@@ -6,7 +6,7 @@
 /*   By: antthoma <antthoma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 01:35:46 by antthoma          #+#    #+#             */
-/*   Updated: 2023/09/29 01:35:47 by antthoma         ###   ########.fr       */
+/*   Updated: 2023/09/30 23:19:34 by antthoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	wait_threads(t_simulation *simulation)
 			philosopher = (t_philosopher *)thread_return[i];
 			printf("%d %d died\n",
 				current_time - philosopher->created_at, philosopher->id);
+			pthread_detach(simulation->threads[philosopher->id]);
+			free(simulation->threads);
 			return (1);
 		}
 		i++;

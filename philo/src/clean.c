@@ -43,6 +43,15 @@ void	clean_simulation(t_simulation *simulation)
 {
 	int	i;
 
+	int j = 0;
+	while(j < simulation->config->count)
+	{
+		free(simulation->thread_return[j]);
+		j++;
+	}
+	free(simulation->thread_return);
+
+
 	clean_forks(simulation);
 	i = 0;
 	while (i < simulation->config->count)
@@ -53,12 +62,16 @@ void	clean_simulation(t_simulation *simulation)
 			free(simulation->philosophers[i]);
 		i++;
 	}
+
+	pthread_detach(simulation->threads[simulation->thread_dead]);
+	free(simulation->threads);
+
 	free(simulation->philosophers);
 	clean_thread_return(simulation);
-	if (simulation->threads)
+	// if (simulation->threads)
 		free(simulation->threads);
-	if (simulation->config)
+	// if (simulation->config)
 		free(simulation->config);
-	if (simulation)
+	// if (simulation)
 		free(simulation);
 }

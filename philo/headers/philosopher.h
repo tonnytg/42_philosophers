@@ -6,7 +6,7 @@
 /*   By: antthoma <antthoma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 01:36:20 by antthoma          #+#    #+#             */
-/*   Updated: 2023/09/29 01:36:21 by antthoma         ###   ########.fr       */
+/*   Updated: 2023/09/30 23:18:16 by antthoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_config
 	int		time_to_eat;
 	int		time_to_sleep;
 	int		panic_stop;
+	int		threads_finished;
 	int		loop;
 	int		count;
 	t_table	*table;
@@ -82,6 +83,7 @@ typedef struct s_simulation
 	pthread_t		*threads;
 	t_philosopher	**philosophers;
 	void			**thread_return;
+	int				thread_dead;
 	t_config		*config;
 	int				err;
 }	t_simulation;
