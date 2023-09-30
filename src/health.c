@@ -22,6 +22,7 @@ int	check_health(t_philosopher *philosopher)
 	if (time_since_last_eat >= philosopher->config->time_to_die)
 	{
 		philosopher->info->is_live = FALSE;
+		philosopher->config->panic_stop = 1;
 		return (1);
 	}
 	return (0);

@@ -17,7 +17,10 @@ void	*routine(t_philosopher *philosopher)
 	int	i;
 
 	i = 0;
-	while (i < philosopher->config->loop || philosopher->config->loop == -1)
+	while (
+			(i < philosopher->config->loop
+			|| philosopher->config->loop == -1)
+			&& philosopher->config->panic_stop == 0)
 	{
 		if (run_sleep(philosopher)
 			|| run_eat(philosopher)
