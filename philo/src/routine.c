@@ -17,11 +17,10 @@ void	*routine(t_philosopher *philosopher)
 	int	i;
 
 	i = 0;
-	while (
-			(i < philosopher->config->loop
-			|| philosopher->config->loop == -1)
-			&& philosopher->config->panic_stop == 0)
+	while (i < philosopher->config->loop || philosopher->config->loop == -1)
 	{
+		if (philosopher->config->panic_stop == TRUE)
+			break ;
 		if (run_sleep(philosopher)
 			|| run_eat(philosopher)
 			|| run_think(philosopher))
@@ -29,6 +28,11 @@ void	*routine(t_philosopher *philosopher)
 		i++;
 	}
 	if (philosopher->info->is_live == FALSE)
-		return (philosopher);
+	{
+		philosopher->config->panic_stop = 1;
+		printf("%d %d died\n",
+			   get_time() - philosopher->created_at, philosopher->id);
+	}
+	philosopher->config->threads_finished++;
 	return (NULL);
 }

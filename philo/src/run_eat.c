@@ -60,9 +60,10 @@ int	run_eat(t_philosopher *philosopher)
 	int		left_fork_id;
 	t_table	*t;
 
-	t = philosopher->config->table;
-	if (check_health(philosopher))
+	if (philosopher->config->panic_stop == TRUE
+		|| check_health(philosopher))
 		return (1);
+	t = philosopher->config->table;
 	if (philosopher->config->count > 1)
 	{
 		right_fork_id = philosopher->id;

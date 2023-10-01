@@ -52,6 +52,7 @@ typedef struct s_config
 	int		time_to_eat;
 	int		time_to_sleep;
 	int		panic_stop;
+	int		threads_finished;
 	int		loop;
 	int		count;
 	t_table	*table;
